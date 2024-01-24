@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Delicious Fruity</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+</head>
+<body>
+  <section>
+    <div class="background-image">
+      <div class="contact-head">
+        <div></div>
+        <span class="conatact-number">
+          <i class="uil uil-phone-volume"> +(638)271
+          2627</i>
+        </span>
+        <span class="social-icons">
+          <a href=""><i class="uil uil-facebook-f"></i></a> 
+          <a href=""><i class="uil uil-instagram"></i></a>
+          <a href=""><i class="uil uil-github-alt"></i></a>
+          <a href=""><i class="uil uil-twitter"></i></a>
+        </span>
+      </div>
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#my-navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="cancel-icon"></span>
+            </button>
+            <a class="navbar-brand" href="#">Delicious Fruity</a>
+          </div>
+
+          <div class="collapse navbar-collapse text-center" id="my-navbar-collapse">
+
+            <ul class="nav navbar-nav navbar-center">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#product-section">Product</a></li>
+              <li><a href="#contact">About us</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="register.html" class="btn btn-danger">Sign Up</a></li>
+            </ul>
+
+          </div>
+        </div>
+      </nav>
+      <div class="home-body" >
+        <div class="container">
+          <div class="image-circle">
+            <img src="./asset/kiwi cir.png" id="animated-image">
+          </div>
+          <div class="home-content">
+            <div class="head">
+              <h2 class="#">Welcome to <span class="typing-span"> Delicious Fruity</span></h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. tempor incididunt ut labore et dolore magna aliqua. </p>
+              <div class="search-container">
+                <input type="text" id="searchField" class="search-field" placeholder="Search...">
+                <button type="button" id="searchButton" class="search-button">Search</button>
+                <div id="errorContainer"></div>
+
+              </div>
+
+            </div>
+            <div class="home-image">
+              <img src="./asset/kiwi.png" id="animated-image">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section >
+  <section id="product-section">
+    <!-- End of home page -->
+    <div class="container">
+      <div class="products">
+        <h2 class="header">Product</h2>
+        <h3 class="header-dub">Product</h3>
+       <!--  <ul class="nav-items">
+          <li class="active"><a href="#">All</a></li>
+          <li><a href="#">Fruit</a></li>
+          <li><a href="#">Vegtables</a></li>
+
+        </ul> -->
+        <!-- cart-items start-->
+        <div id="cart-icon" class="hide">
+          <i class="uil uil-shopping-cart-alt"></i>
+          <span id="cart-count">0</span>
+        </div>
+
+        <!-- Model page -->
+        <div id="cart-modal" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3 class="page-header text-center">Cart-Items</h3>    
+            <div id="cart-items"></div>
+            <div id="cart-total">Total: $0.00</div>
+            <button id="buy-button">Buy</button>
+          </div>
+        </div>
+        <!-- Product item -->
+        <div class="product-items">
+          <!-- product 1 -->
+          
+            <div class="product">
+              <img src="./asset/apple.jpg" alt="Product Image">
+              <div>
+                <h3 class="product-title">Apple</h3>
+                <input type="number" class="quantity-field" value="1" min="1">
+                <p class="product-price">$9.99</p>
+              </div>
+              <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <!-- product 2 -->
+            <div class="product">
+              <img src="./asset/grape.jpg" alt="Product Image">
+              <div>
+                <h3 class="product-title">Grape</h3>
+                <input type="number" class="quantity-field" value="1" min="1">
+                <p class="product-price">$9.99</p>
+              </div> 
+              <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <!-- product 3 -->
+            <div class="product">
+              <img src="./asset/mango.jpg" alt="Product Image">
+              <div>
+                <h3 class="product-title">Mango</h3>
+                <input type="number" class="quantity-field" value="1" min="1">
+                <p class="product-price">$9.99</p>
+              </div>
+              <button class="add-to-cart">Add to Cart</button>
+            </div>
+         
+          
+          <!-- product 4 -->
+            <div class="product">
+              <img src="./asset/caret.jpg" alt="Product Image">
+              <div>
+                <h3 class="product-title">Caret</h3>
+                <input type="number" class="quantity-field" value="1" min="1">
+                <p class="product-price">$9.99</p>
+              </div> 
+              <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <!-- product 5 -->
+            <div class="product">
+              <img src="./asset/greenleafs.jpg" alt="Product Image">
+              <div>
+                <h3 class="product-title">Green Leafs</h3>
+                <input type="number" class="quantity-field" value="1" min="1">
+                <p class="product-price">$9.99</p>
+              </div> 
+              <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <!-- product 6 -->
+            <div class="product">
+              <img src="./asset/tomatto.jpg" alt="Product Image">
+              <div>
+                <h3 class="product-title">Tomato</h3>
+                <input type="number" class="quantity-field" value="1" min="1">
+                <p class="product-price">$9.99</p>
+              </div> 
+              <button class="add-to-cart">Add to Cart</button>
+            </div>
+          
+        </div>
+
+    <!-- Warning message modal -->
+    <div id="warning-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="warning-message"></p>
+      </div>
+    </div>
+    <!-- cart-items end-->
+  </div>
+</div>
+
+</section>
+
+<section id="contact-section"></section>
+  <footer id="contact">
+    <div class="container">
+      <h2 class="header">Contact</h2>
+      <h3 class="header-dub">Contact us</h3>
+      <div class="footer-content">
+        <div class="footer-column">
+         <h4>About Us</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+        <div class="footer-column">
+         <h4>Contact Us</h4>
+          <p>Natham Dindigul, Tamilnadu, India</p>
+          <p>Email: suryaprakashmessi99@gmail.com</p>
+          <p>Phone: +91 638 271 2627</p>
+        </div>
+        <div class="footer-column">
+          <h4>Follow Us</h4>
+          <div class="social-icons">
+            <a href=""><i class="uil uil-facebook-f"></i></a> 
+            <a href=""><i class="uil uil-instagram"></i></a>
+            <a href=""><i class="uil uil-github-alt"></i></a>
+            <a href=""><i class="uil uil-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2023 delicious fruity. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript" src="script.js"></script>
+</body>
+</html>

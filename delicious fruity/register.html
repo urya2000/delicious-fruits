@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>register form</title>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+  <style type="text/css">
+    .registration-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+}
+
+.registration-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.registration-form .form-group {
+  margin-bottom: 20px;
+}
+
+.registration-form label {
+  display: block;
+  font-weight: bold;
+}
+
+.registration-form input[type="text"],
+.registration-form input[type="email"],
+.registration-form input[type="tel"],
+.registration-form input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.registration-form button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .registration-form {
+    max-width: 100%;
+  }
+}
+
+  </style>
+</head>
+<body><div class="registration-form">
+  <h2>Create an Account</h2>
+  <form id="register-form">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required>
+      <div class="error" id="name-error"></div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+      <div class="error" id="email-error"></div>
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone</label>
+      <input type="tel" id="phone" name="phone" required>
+      <div class="error" id="phone-error"></div>
+    </div>
+    <div class="form-group">
+      <label for="address">Address</label>
+      <input type="text" id="address" name="address" required>
+      <div class="error" id="address-error"></div>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required>
+      <div class="error" id="password-error"></div>
+    </div>
+    <div class="form-group">
+      <label for="confirm-password">Confirm Password</label>
+      <input type="password" id="confirm-password" name="confirm-password" required>
+      <div class="error" id="confirm-password-error"></div>
+    </div>
+    <button type="submit">Register</button>
+  </form>
+</div>
+
+<script type="text/javascript">
+  document.getElementById('register-form').addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent form submission
+
+  // Validate form fields
+  var name = document.getElementById('name').value.trim();
+  var email = document.getElementById('email').value.trim();
+  var phone = document.getElementById('phone').value.trim();
+  var address = document.getElementById('address').value.trim();
+  var password = document.getElementById('password').value;
+  var confirmPassword = document.getElementById('confirm-password').value;
+
+  // Reset error messages
+  var errorElements = document.getElementsByClassName('error');
+  for (var i = 0; i < errorElements.length; i++) {
+    errorElements[i].innerHTML = '';
+  }
+
+  // Validate name
+  if (name === '') {
+    document.getElementById('name-error').innerHTML = 'Name is required';
+    return;
+  }
+
+  // Validate email
+  if (email === '') {
+    document.getElementById('email-error').innerHTML = 'Email is required';
+    return;
+  }
+
+  // Validate phone
+  if (phone === '') {
+    document.getElementById('phone-error').innerHTML = 'Phone is required';
+    return;
+  }
+
+  // Validate address
+  if (address === '') {
+    document.getElementById('address-error').innerHTML = 'Address is required';
+    return;
+  }
+
+  // Validate password
+  if (password === '') {
+    document.getElementById('password-error').innerHTML = 'Password is required';
+    return;
+  }
+
+  // Validate confirm password
+  if (confirmPassword === '') {
+    document.getElementById('confirm-password-error').innerHTML = 'Confirm Password is required';
+    return;
+  }
+
+  if (password !== confirmPassword) {
+    document.getElementById('confirm-password-error').innerHTML = 'Passwords do not match';
+    return;
+  }
+
+  // Form is valid, proceed with registration
+  // Add your code here to handle the form submission, such as sending data to the server
+
+  alert('Registration successful!');
+  document.getElementById('register-form').reset(); // Reset the form fields
+});
+
+</script>
+
+</body>
+</html>

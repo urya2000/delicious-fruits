@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Order Success</title>
+  <style type="text/css">
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #bdffc3;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  margin: 0;
+}
+
+main {
+  padding: 20px;
+}
+
+.order-details {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+h2 {
+  color: #1D8727;
+  font-style: italic;
+}
+
+#order-info {
+  margin-bottom: 20px;
+}
+
+#order-status {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  background-color: green;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+a:hover {
+  background-color: darkseagreen;
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Order Success</h1>
+  </header>
+
+  <main>
+    <div class="order-details">
+      <h2>Order Details</h2>
+      <div id="order-info"></div>
+      <p id="order-status"></p>
+      <a href="">Track Order</a>
+      <a href="index.html">Home</a><br><br>
+      <mark>This only design and checking purpose olny.</mark>
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+  // Retrieve the order details from localStorage
+  var orderDetails = JSON.parse(localStorage.getItem('orderDetails'));
+
+  // Display the order details
+  if (orderDetails) {
+    var orderInfo = document.getElementById('order-info');
+    orderInfo.innerHTML = '<p>Order ID: ' + orderDetails.orderId + '</p>' +
+                          '<p>Total: $' + orderDetails.total + '</p>';
+
+    var orderStatus = document.getElementById('order-status');
+    orderStatus.textContent = 'Order Status: ' + orderDetails.status;
+  } else {
+    // If order details are not found, show an error message
+    var orderInfo = document.getElementById('order-info');
+    orderInfo.textContent = 'Error retrieving order details. Please try again.';
+  }
+});
+
+
+  </script>
+</body>
+</html>

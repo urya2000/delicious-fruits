@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout Page</title>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+  <style type="text/css">
+    /* Add your desired styling here */
+body {
+  scroll-behavior: smooth !important;
+  overflow-x: hidden !important;
+  background-color: #eeffeb !important;
+}
+
+header {
+  padding: 20px;
+  background-color: #bdffc3;
+}
+
+.logo img {
+  height: 50px;
+}
+
+main {
+  display: flex;
+  padding: 10px;
+}
+
+main .product-list {
+  width: 50%;
+  padding: 20px;
+}
+
+main .product-list h2 {
+  color: #1D8727;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+main .product-list #product-list {
+  padding: 10px;
+}
+
+main .product-list .product-item {
+  background-color: #edebff;
+  padding: 10px;
+  margin-bottom: 10px;
+
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  transition: .3s;
+}
+
+main .product-list .product-item:hover {
+  cursor: pointer;
+  background-color: #dcd9ff;
+  border-radius: 10px;
+  transition: .3s;
+}
+
+main .product-list .product-item .product-details {
+  display: none;
+  padding: 10px;
+}
+
+main .product-list .product-item.active .product-details {
+  display: block;
+}
+
+main .product-list .product-item img {
+  max-width: 100px;
+  height: auto;
+}
+
+main .product-list .product-item .product-title {
+  font-weight: bold;
+}
+
+main .product-list .total {
+  text-align: right;
+  padding-right: 20px;
+}
+
+main .user-info {
+  width: 50%;
+  padding: 20px;
+}
+
+main .user-info h2 {
+  color: #1D8727;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+main .user-info form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+main .user-info form .form-group {
+  margin-bottom: 20px;
+}
+
+main .user-info form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+main .user-info form input[type="text"],
+main .user-info form input[type="email"],
+main .user-info form input[type="tel"],
+main .user-info form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+main .user-info form button[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.remove-item{
+  float: right !important;
+}
+
+@media (max-width: 768px) {
+  main {
+    flex-wrap: wrap;
+  }
+
+  main .product-list,
+  main .user-info {
+    width: 100%;
+  }
+}
+
+  </style>
+
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <a href="index.html">HOME</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="product-list">
+      <h2>Product List</h2>
+       <div class="total">
+        <h4>Total: <span id="total"></span></h4>
+      </div>
+      <div id="product-list">
+        <!-- Product items go here -->
+      </div>
+     
+    </div>
+
+    <div class="user-info">
+      <h2>User Information</h2>
+      <form id="checkout-form">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+        </div>
+        <div class="form-group">
+          <label for="address">Address</label>
+          <textarea id="address" name="address" required></textarea>
+        </div>
+        <button type="submit">Place Order</button>
+      </form>
+    </div>
+  </main>
+
+  <script>
+ $(document).ready(function() {
+  // Retrieve the URL query string
+  var queryString = window.location.search.substring(1);
+  var params = new URLSearchParams(queryString);
+
+  // Retrieve and display the product details
+  var total = parseFloat(params.get('total'));
+  $('#total').text('$' + total.toFixed(2));
+
+  var images = params.getAll('image[]');
+  var titles = params.getAll('title[]');
+  var prices = params.getAll('price[]');
+  var quantities = params.getAll('quantity[]');
+  var subtotals = params.getAll('subtotal[]');
+
+  var cartItems = [];
+
+  var updateTotal = function() {
+    var updatedTotal = 0;
+    cartItems.forEach(function(item) {
+      updatedTotal += item.price * item.quantity;
+    });
+    $('#total').text('$' + updatedTotal.toFixed(2));
+
+    // Show or hide Place Order button and display alert message if total is 0
+    if (updatedTotal === 0) {
+      $('#place-order').prop('disabled', true);
+      $('#alert-message').show();
+    } else {
+      $('#place-order').prop('disabled', false);
+      $('#alert-message').hide();
+    }
+  };
+
+  var updateCartItems = function() {
+    $('#product-list').empty();
+
+    cartItems.forEach(function(item, index) {
+      var productHtml = '<div class="product-item">' +
+                        '<i class="uil uil-trash-alt remove-item" data-index="' + index + '"></i>'+
+                        '<img src="' + item.image + '" alt="Product Image">' +
+                        '<h3>' + item.title + '</h3>' +
+                        '<p>Price: $' + item.price + '</p>' +
+                        '<p>Quantity: ' + item.quantity + '</p>' +
+                        '<p class="subtotal">Subtotal: $' + (item.price * item.quantity).toFixed(2) + '</p>' +
+                        '</div>';
+
+      $('#product-list').append(productHtml);
+    });
+
+    updateTotal();
+  };
+
+  // Load cart items from localStorage if available
+  if (localStorage.getItem('cartItems')) {
+    cartItems = JSON.parse(localStorage.getItem('cartItems'));
+    updateCartItems();
+  }
+
+  // Remove item from the list when remove icon is clicked
+  $(document).on('click', '.remove-item', function() {
+    var itemIndex = $(this).data('index');
+    cartItems.splice(itemIndex, 1);
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    updateCartItems();
+  });
+
+  // Clear cart items from localStorage
+  $(document).on('click', '#clear-cart', function() {
+    cartItems = [];
+    localStorage.removeItem('cartItems');
+    updateCartItems();
+  });
+
+  // Remove cart items and clear localStorage when the checkout form is submitted
+  $('#checkout-form').submit(function(event) {
+    event.preventDefault();
+    if (cartItems.length === 0) {
+      alert('Your cart is empty. Please add items to your cart.');
+    } else {
+      cartItems = [];
+      localStorage.removeItem('cartItems');
+      // Show alert message for order placement
+      alert('Your order has been placed!');
+      updateCartItems();
+      // You can perform any other action here, such as redirecting to a success page
+       window.location.href = 'success.html';
+    }
+  });
+
+  // Add new items to the cart and update localStorage
+  for (var i = 0; i < images.length; i++) {
+    var image = decodeURIComponent(images[i]);
+    var title = decodeURIComponent(titles[i]);
+    var price = parseFloat(decodeURIComponent(prices[i]));
+    var quantity = parseInt(decodeURIComponent(quantities[i]));
+
+    var item = {
+      image: image,
+      title: title,
+      price: price,
+      quantity: quantity
+    };
+
+    cartItems.push(item);
+  }
+
+  updateCartItems();
+});
+
+
+
+  </script>
+</body>
+
+</html>
